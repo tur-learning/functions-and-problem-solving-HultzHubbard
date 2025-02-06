@@ -12,8 +12,8 @@ def BMR():
     totalBMRwomen = (weight * 9.5634) + (hight * 1.8496) - (age * 4.6756) + 655.0955
 
     # Final print statements
-    print("\nNumber of chocolate bars required for men's metabolism: ", + (totalBMRmen / 214))
-    print("Number of chocolate bars required for women's metabolism: ", + (totalBMRwomen / 214))
+    print("\nNumber of chocolate bars required for men's metabolism: ", + (totalBMRmen // 214))
+    print("Number of chocolate bars required for women's metabolism: ", + (totalBMRwomen // 214))
 
 BMR()
 
@@ -42,10 +42,14 @@ def time():
     RawSeconds = int(input("Please enter the number of seconds you wish to be divided into hours, minutes, and seconds: "))
 
     # Calculations
-    hours = int(RawSeconds / 3600)
-    minutes = int(((RawSeconds / 3600) % 1) * 60)
-    seconds = int(((((RawSeconds / 3600) % 1) * 60) % 1) * 60)
-
-    print(f"{RawSeconds} seconds is {hours} hours, {minutes} minutes, and {seconds} seconds.")
+    hours = RawSeconds / 3600
+    minutes = (hours % 1) * 60
+    seconds = (minutes % 1) * 60
+        
+        # rounding
+    if seconds >= 0.5:
+        print(f"{RawSeconds} seconds is {int(hours)} hours, {int(minutes)} minutes, and {int(seconds + 1)} seconds.")
+    else:
+        print(f"{RawSeconds} seconds is {int(hours)} hours, {int(minutes)} minutes, and {int(seconds)} seconds.")
 
 time()
